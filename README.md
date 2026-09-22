@@ -35,34 +35,34 @@ This project demonstrates full‑stack engineering, API design, database modelin
 
 ## 📁 Project Structure
 
-TaskFlow/
-│
-├── backend/
-│   ├── src/
-│   │   ├── controllers/
-│   │   ├── routes/
-│   │   ├── models/
-│   │   ├── middleware/
-│   │   └── utils/
-│   ├── tests/
-│   ├── Dockerfile
-│   └── README.md
-│
-├── frontend/
-│   ├── src/
-│   ├── public/
-│   ├── tests/
-│   ├── Dockerfile
-│   └── README.md
-│
-├── docs/
-│   ├── architecture-diagram.png
-│   ├── api-spec.md
-│   └── screenshots/
-│
-├── docker-compose.yml
-├── .github/workflows/ci.yml
-└── README.md
+    TaskFlow/
+    │
+    ├── backend/
+    │   ├── src/
+    │   │   ├── controllers/
+    │   │   ├── routes/
+    │   │   ├── models/
+    │   │   ├── middleware/
+    │   │   └── utils/
+    │   ├── tests/
+    │   ├── Dockerfile
+    │   └── README.md
+    │
+    ├── frontend/
+    │   ├── src/
+    │   ├── public/
+    │   ├── tests/
+    │   ├── Dockerfile
+    │   └── README. md
+    │
+    ├── docs/
+    │   ├── architecture-diagram.png
+    │   ├── api-spec.md
+    │   └── screenshots/
+    │
+    ├── docker-compose.yml
+    ├── .github/workflows/ci.yml
+    └── README.md
 
 ---
 
@@ -72,12 +72,17 @@ Full API documentation is available in `docs/api-spec.md`.
 
 Example endpoints:
 
-POST /auth/register
-POST /auth/login
-GET /tasks
-POST /tasks
-PUT /tasks/:id
-DELETE /tasks/:id
+ - POST /auth/register
+
+ - POST /auth/login
+
+ - GET /tasks
+
+ - POST /tasks
+
+ - PUT /tasks/:id
+
+ - DELETE /tasks/:id
 
 ---
 
@@ -85,7 +90,8 @@ DELETE /tasks/:id
 
 ### 1. Clone the repository
 
-git clone https://github.com/YOUR_USERNAME/TaskFlow.git (github.com in Bing)
+git clone https://github.com/YOUR_USERNAME/TaskFlow.git 
+
 cd TaskFlow
 
 ---
@@ -93,8 +99,11 @@ cd TaskFlow
 ### 2. Backend Setup
 
 cd backend
+
 npm install
+
 cp .env.example .env
+
 npm run dev
 
 ---
@@ -102,7 +111,9 @@ npm run dev
 ### 3. Frontend Setup
 
 cd frontend
+
 npm install
+
 npm run dev
 
 ---
