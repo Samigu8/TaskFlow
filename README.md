@@ -72,17 +72,17 @@ Full API documentation is available in `docs/api-spec.md`.
 
 Example endpoints:
 
- - POST /auth/register
+    POST /auth/register
 
- - POST /auth/login
+    POST /auth/login
 
- - GET /tasks
+    GET /tasks
 
- - POST /tasks
+    POST /tasks
 
- - PUT /tasks/:id
+    PUT /tasks/:id
 
- - DELETE /tasks/:id
+    DELETE /tasks/:id
 
 ---
 
@@ -90,37 +90,37 @@ Example endpoints:
 
 ### 1. Clone the repository
 
-git clone https://github.com/YOUR_USERNAME/TaskFlow.git 
+    git clone https://github.com/YOUR_USERNAME/TaskFlow.git 
 
-cd TaskFlow
+    cd TaskFlow
 
 ---
 
 ### 2. Backend Setup
 
-cd backend
+    cd backend
 
-npm install
+    npm install
 
-cp .env.example .env
+    cp .env.example .env
 
-npm run dev
+    npm run dev
 
 ---
 
 ### 3. Frontend Setup
 
-cd frontend
+    cd frontend
 
-npm install
+    npm install
 
-npm run dev
+    npm run dev
 
 ---
 
 ### 4. Run with Docker
 
-docker-compose up --build
+    docker-compose up --build
 
 ---
 
@@ -128,11 +128,11 @@ docker-compose up --build
 
 ### Backend tests
 
-npm run test
+    npm run test
 
 ### Frontend tests
 
-npm run test
+    npm run test
 
 ---
 
