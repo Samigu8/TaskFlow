@@ -80,9 +80,28 @@ Example endpoints:
 
     POST /tasks
 
-    PUT /tasks/:id
-
+    PATCH /tasks/:id
     DELETE /tasks/:id
+
+`GET /tasks` supports the following optional query parameters:
+
+    status=TODO|IN_PROGRESS|COMPLETED
+    priority=LOW|MEDIUM|HIGH
+    search=term
+    sortBy=createdAt|updatedAt|dueDate|title|priority|status
+    sortOrder=asc|desc
+
+Authentication endpoints:
+
+    POST /auth/register
+    POST /auth/login
+    GET /auth/me
+
+Send the returned JWT on task requests:
+
+    Authorization: Bearer <token>
+
+All task reads and writes are scoped to the authenticated user.
 
 ---
 

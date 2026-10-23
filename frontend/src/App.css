@@ -4,6 +4,40 @@
   padding: 52px 28px 72px;
 }
 
+.auth-shell {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.auth-card {
+  background: #fff;
+  border: 1px solid #e2e7f0;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(35, 53, 86, 0.06);
+  max-width: 420px;
+  padding: 32px;
+  width: 100%;
+}
+
+.auth-card h1 {
+  margin-bottom: 12px;
+}
+
+.auth-card .task-form {
+  border: 0;
+  box-shadow: none;
+  margin-top: 24px;
+  padding: 0;
+}
+
+.auth-toggle {
+  display: block;
+  margin: 18px auto 0;
+}
+
 .app-header,
 .section-heading,
 .task-card-top,
@@ -16,6 +50,18 @@
 
 .app-header {
   margin-bottom: 36px;
+}
+
+.header-actions {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+}
+
+.account-email {
+  color: #7b859a;
+  font-size: 0.82rem;
+  margin-top: 8px;
 }
 
 .eyebrow {
@@ -157,6 +203,20 @@ button {
   gap: 12px;
 }
 
+.filters {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(140px, 2fr) repeat(4, minmax(100px, 1fr));
+  margin-bottom: 18px;
+}
+
+.filters input,
+.filters select {
+  margin-top: 0;
+  min-width: 0;
+  padding: 8px 9px;
+}
+
 .task-card {
   border: 1px solid #e2e7f0;
   border-radius: 12px;
@@ -240,7 +300,19 @@ button {
     flex-direction: column;
   }
 
+  .header-actions {
+    width: 100%;
+  }
+
   .content-grid {
     grid-template-columns: 1fr;
+  }
+
+  .filters {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .filters input {
+    grid-column: 1 / -1;
   }
 }
