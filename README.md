@@ -4,6 +4,25 @@ TaskFlow is a full-stack task management application with JWT authentication,
 user-scoped task ownership, search, filtering, sorting, and PostgreSQL
 persistence.
 
+## Live Demo
+
+- **Frontend:** https://taskflow-web.onrender.com
+- **API Health:** https://taskflow-api.onrender.com/health
+
+These URLs are provided by the Render Blueprint and are available after the
+services finish deploying.
+
+## Resume Highlights
+
+> Developed a full-stack task management platform using React, Express,
+> PostgreSQL, and Prisma with JWT authentication, ownership controls, advanced
+> search and filtering, automated integration testing, Playwright end-to-end
+> tests, and GitHub Actions CI/CD.
+
+> Engineered a full-stack task management application serving authenticated
+> users with secure JWT-based access control, PostgreSQL persistence, automated
+> testing pipelines, Dockerized deployment, and a responsive React UI.
+
 ## Features
 
 - User registration, login, and logout
