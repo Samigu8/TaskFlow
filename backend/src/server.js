@@ -9,16 +9,27 @@ const { PrismaClient, Priority, Status } = require("@prisma/client");
 const app = express();
 const prisma = new PrismaClient();
 const jwtSecret = process.env.JWT_SECRET;
+const corsOrigin = process.env.CORS_ORIGIN || true;
 
 if (!jwtSecret) {
   throw new Error("JWT_SECRET must be configured");
 }
 
-app.use(cors());
+app.use(cors({ origin: corsOrigin }));
 app.use(express.json());
 
 app.get("/", (req, res) => {
   res.json({ message: "TaskFlow API running" });
+});
+
+app.get("/health", async (req, res) => {
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    res.json({ status: "ok", database: "connected" });
+  } catch (error) {
+    console.error("Health check failed:", error);
+    res.status(503).json({ status: "unavailable", database: "disconnected" });
+  }
 });
 
 function createToken(user) {
@@ -255,7 +266,8 @@ app.delete("/tasks/:id", authenticate, async (req, res) => {
   }
 });
 
-const server = app.listen(3000, () => console.log("Server running on port 3000"));
+const port = Number(process.env.PORT) || 3000;
+const server = app.listen(port, () => console.log(`Server running on port ${port}`));
 
 async function shutdown() {
   await prisma.$disconnect();
