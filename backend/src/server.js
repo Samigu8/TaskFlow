@@ -50,7 +50,9 @@ function isValidEnumValue(value, enumObject) {
 const sortableFields = new Set(["createdAt", "updatedAt", "dueDate", "title", "priority", "status"]);
 
 function parseTaskQuery(query) {
-  const { status, priority, search = "", sortBy = "createdAt", sortOrder = "desc" } = query;
+  const status = query.status || undefined;
+  const priority = query.priority || undefined;
+  const { search = "", sortBy = "createdAt", sortOrder = "desc" } = query;
 
   if (!isValidEnumValue(status, Status) || !isValidEnumValue(priority, Priority)) {
     return { error: "Invalid status or priority filter" };
@@ -83,7 +85,7 @@ function parseTaskQuery(query) {
 }
 
 app.post("/auth/register", async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password } = req.body || {};
   const normalizedEmail = typeof email === "string" ? email.trim().toLowerCase() : "";
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
@@ -109,7 +111,7 @@ app.post("/auth/register", async (req, res) => {
 });
 
 app.post("/auth/login", async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password } = req.body || {};
   const normalizedEmail = typeof email === "string" ? email.trim().toLowerCase() : "";
 
   if (!normalizedEmail || typeof password !== "string") {
@@ -164,7 +166,7 @@ app.get("/tasks", authenticate, async (req, res) => {
 });
 
 app.post("/tasks", authenticate, async (req, res) => {
-  const { title, description, priority, dueDate } = req.body;
+  const { title, description, priority, dueDate } = req.body || {};
 
   if (typeof title !== "string" || title.trim().length === 0) {
     return res.status(400).json({ error: "A task title is required" });
@@ -195,7 +197,7 @@ app.post("/tasks", authenticate, async (req, res) => {
 
 app.patch("/tasks/:id", authenticate, async (req, res) => {
   const taskId = Number(req.params.id);
-  const { title, description, priority, status, dueDate } = req.body;
+  const { title, description, priority, status, dueDate } = req.body || {};
 
   if (!Number.isInteger(taskId) || taskId < 1) {
     return res.status(400).json({ error: "Invalid task id" });
