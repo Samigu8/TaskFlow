@@ -10,6 +10,20 @@ jobs:
   backend:
     name: Backend checks
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: taskflow
+          POSTGRES_USER: taskflow
+          POSTGRES_PASSWORD: taskflow
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U taskflow -d taskflow"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
     defaults:
       run:
         working-directory: backend
@@ -32,24 +46,24 @@ jobs:
 
       - name: Validate Prisma schema
         env:
-          DATABASE_URL: postgresql://ci:ci@localhost:5432/taskflow
+          DATABASE_URL: postgresql://taskflow:taskflow@localhost:5432/taskflow?schema=public
         run: npx prisma validate
 
       - name: Generate Prisma Client
         env:
-          DATABASE_URL: postgresql://ci:ci@localhost:5432/taskflow
+          DATABASE_URL: postgresql://taskflow:taskflow@localhost:5432/taskflow?schema=public
         run: npx prisma generate
+
+      - name: Apply database migrations
+        env:
+          DATABASE_URL: postgresql://taskflow:taskflow@localhost:5432/taskflow?schema=public
+        run: npx prisma migrate deploy
 
       - name: Run backend integration tests
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          DATABASE_URL: postgresql://taskflow:taskflow@localhost:5432/taskflow?schema=public
+          JWT_SECRET: ci-only-taskflow-secret
         run: |
-          if [ -z "$DATABASE_URL" ] || [ -z "$JWT_SECRET" ]; then
-            echo "::notice::Skipping backend integration tests because DATABASE_URL and JWT_SECRET are not configured."
-            exit 0
-          fi
-
           node src/server.js > "$RUNNER_TEMP/taskflow-backend.log" 2>&1 &
           server_pid=$!
           trap 'kill "$server_pid" 2>/dev/null || true' EXIT
